@@ -23,5 +23,15 @@
   "bugs": {
     "url": "https://github.com/sax1johno/seneca-views/issues"
   },
-  "homepage": "https://github.com/sax1johno/seneca-views"
+  "homepage": "https://github.com/sax1johno/seneca-views",
+  "dependencies": {
+    "async": "^1.5.2",
+    "consolidate": "^0.14.0",
+    "constantinople": "^3.0.2",
+    "jade": "^1.11.0",
+    "seneca": "^1.1.0",
+    "synchronize": "^0.9.14",
+    "temp": "^0.8.3",
+    "underscore": "^1.8.3"
+  }
 }
