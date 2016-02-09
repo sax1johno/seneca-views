@@ -49,6 +49,7 @@ It's recommended that you add views in the  "init" method of your seneca plugin.
 
 To add all of view from a specified folder, you can use the following snippet.
 
+This example uses the async npm module and the "path" npm module.
 ```javascript
     seneca.add({init:pluginName}, function(args, done) {
         fs.readdir(path.join(__dirname, "/views"), function(err, files) {
