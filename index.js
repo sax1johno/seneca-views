@@ -5,8 +5,9 @@ var jade = require('./jade'),
     fs = require('fs'),
     sutil = require('util'),
     temp = require('temp').track(),
-    async = require('async');
-
+    async = require('async'),
+    _ = require('underscore');
+    
 module.exports = function(options) {
     var pluginName = "views";
     
@@ -34,26 +35,23 @@ module.exports = function(options) {
         // from the path / fs tools.
         view.ext = args.ext;
         view.name = args.name;
-        view.template = args.template;
+        view.template = args.template.toString();
+        seneca.log.debug("template in add for name ", args.name, " is ", view.template.toString());
         
         // Should remove the leading ., currently not using it.
         view.engine = view.ext.substring(1);
         view.file = { file: {
             path: "/"
         }};
-        seneca.log.debug('Adding a view with name', args.name, 'with extension', args.ext);
+        seneca.log.debug("Before saving, view ", view.name, " is ", view);
         view.save$(function(err,savedView){
+            seneca.log.debug("After saving, ", view.name, "is ", savedView);
             if (err) {
                 done(err);
             } else {
                 done(null, {view: savedView});
             }
         });
-            // } else {
-            //     seneca.log.error({why: err});
-            //     done({why: err});
-            // }
-        // });
     });
     
     // Render a view and send the result back.
@@ -68,12 +66,13 @@ module.exports = function(options) {
             seneca.log.debug("Found view with name", args.name, ": ", thisView);
             if (err) {
                 done({status: 500, why: err});
-            } else if (typeof(thisView) == undefined) {
-                done({status: 404, why: "template with name " + args.name + 
-                        " and plugin " + args.plugin + " not found"});
+            } else if (_.isUndefined(thisView)) {
+                var message = "template with name " + args.name + " and plugin " + args.plugin + " not found";
+                seneca.log.debug(message)
+                done({status: 404, why: message});
             } else {
                 seneca.log.debug('Attempting to render', 
-                    thisView.name, 
+                    thisView.name,
                     'with engine', 
                     thisView.engine
                     );
@@ -82,7 +81,8 @@ module.exports = function(options) {
                     role: pluginName, 
                     cmd: 'renderWithEngine',
                     engine: thisView.engine,
-                    view: thisView
+                    view: thisView,
+                    locals: args.locals
                 }, function(err, result) {
                     if (err) {
                         done({status: 500, why: err});
