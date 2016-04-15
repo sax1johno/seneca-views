@@ -8,7 +8,7 @@ var jade = require('./jade'),
     async = require('async'),
     _ = require('underscore'),
     markdown = require('marked');
-    
+
 module.exports = function(options) {
     var pluginName = "views";
     
