@@ -1,0 +1,65 @@
+{
+  "name": "seneca-views",
+  "version": "0.1.6",
+  "description": "A views engine for senecajs that renders views as a microservice.  Allows views to be referenced by plugin and name rather than file location making it compatible with multi-process, multi-machine microservices.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sax1johno/seneca-views"
+  },
+  "keywords": [
+    "seneca",
+    "views",
+    "jade"
+  ],
+  "author": {
+    "name": "John O'Connor",
+    "url": "@sax1johno"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sax1johno/seneca-views/issues"
+  },
+  "homepage": "https://github.com/sax1johno/seneca-views",
+  "dependencies": {
+    "async": "^1.5.2",
+    "consolidate": "^0.14.0",
+    "constantinople": "^3.0.2",
+    "jade": "^1.11.0",
+    "marked": "^0.3.5",
+    "seneca": "^1.1.0",
+    "synchronize": "^0.9.14",
+    "temp": "^0.8.3",
+    "underscore": "^1.8.3"
+  },
+  "gitHead": "7d517f441a4879b17c2718bea4ffade94c78cc99",
+  "_id": "seneca-views@0.1.5",
+  "_shasum": "dd420d118b67f2ccc9774a439f722398bcf0d312",
+  "_from": "seneca-views@latest",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "sax1johno",
+    "email": "sax1johno@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "sax1johno",
+      "email": "sax1johno@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "dd420d118b67f2ccc9774a439f722398bcf0d312",
+    "tarball": "http://registry.npmjs.org/seneca-views/-/seneca-views-0.1.5.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/seneca-views-0.1.5.tgz_1457591664550_0.8836332568898797"
+  },
+  "_resolved": "https://registry.npmjs.org/seneca-views/-/seneca-views-0.1.5.tgz"
+}
