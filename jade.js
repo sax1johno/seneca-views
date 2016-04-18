@@ -12,7 +12,8 @@ var underscore = require('underscore'),
     sutil  = require('util'),
     jade = require('jade'),
     sync = require('synchronize'),
-    jadeParserPatch = require('./lib/JadeAdapter');
+    jadeParserPatch = require('./lib/JadeAdapter'),
+    markdown = require('marked');
     
 module.exports = function(options) {
     var pluginName = "views";
@@ -32,12 +33,21 @@ module.exports = function(options) {
         view: {required$: true}
     }, function(args, done) {
         seneca.log.debug("Rendering with jade");
+        var locals = args.locals;
+        // Add markdown support.  $ at the end is meant to prevent accidental namespace overloading by other
+        // locals.
+        locals.markdown$ = markdown;
+        locals.md$ = markdown;
         sync.fiber(function() {
-            options.parser = jadeParserPatch;
-            options.seneca = seneca;
-            var fn = jade.compile(args.view.template, options);
-            var html = fn(args.locals);
-            done(null, {html: html});
+            try {
+                options.parser = jadeParserPatch;
+                options.seneca = seneca;
+                var fn = jade.compile(args.view.template, options);
+                var html = fn(args.locals);
+                done(null, {html: html});
+            } catch (e) {
+                done(null, {error: "Render Error", html: "<h1>Error Encountered</h1><p>Unable to render view: </p><p>" + e + "</p>"});
+            }
         });
     });
     
