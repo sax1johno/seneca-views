@@ -78,7 +78,7 @@ module.exports = function(options) {
                     thisView.engine
                     );
                 // Send out the rendering to whichever plugin handles the specified type.
-                var locals = args.locals;
+                var locals = args.locals || {};
                 locals.engines$ = {};
                 locals.engines$.markdown = markdown;
                 seneca.act({
