@@ -33,7 +33,7 @@ module.exports = function(options) {
         view: {required$: true}
     }, function(args, done) {
         seneca.log.debug("Rendering with jade");
-        var locals = args.locals;
+        var locals = args.locals || {};
         // Add markdown support.  $ at the end is meant to prevent accidental namespace overloading by other
         // locals.
         locals.markdown$ = markdown;
