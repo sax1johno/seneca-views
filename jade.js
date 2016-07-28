@@ -44,8 +44,8 @@ module.exports = function(options) {
                 options.seneca = seneca;
                 var fn = jade.compile(args.view.template, options);
                 console.log("fn = ", fn);
-                console.log("locals = ", args.locals);
-                var html = fn(args.locals);
+                console.log("locals = ", locals);
+                var html = fn(locals);
                 console.log("Html = ", sutil.inspect(html));
                 done(null, {html: html});
             } catch (e) {
