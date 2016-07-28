@@ -42,7 +42,8 @@ module.exports = function(options) {
             try {
                 options.parser = jadeParserPatch;
                 options.seneca = seneca;
-                var fn = jade.compile(args.view.template, options);
+                var fn = jade.compile(args.view.template, {
+                    filename: args.view.name});
                 var html = fn(args.locals);
                 done(null, {html: html});
             } catch (e) {
