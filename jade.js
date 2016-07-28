@@ -33,7 +33,7 @@ module.exports = function(options) {
         view: {required$: true}
     }, function(args, done) {
         seneca.log.debug("Rendering with jade");
-        var locals = args.locals || {};
+        var locals = args.locals;
         // Add markdown support.  $ at the end is meant to prevent accidental namespace overloading by other
         // locals.
         locals.markdown$ = markdown;
@@ -42,9 +42,9 @@ module.exports = function(options) {
             try {
                 options.parser = jadeParserPatch;
                 options.seneca = seneca;
-                var fn = jade.compile(args.view.template, {
-                    filename: args.view.name});
+                var fn = jade.compile(args.view.template, options);
                 var html = fn(args.locals);
+                console.log("Html = ", sutil.inspect(html));
                 done(null, {html: html});
             } catch (e) {
                 done(null, {error: "Render Error", html: "<h1>Error Encountered</h1><p>Unable to render view: </p><p>" + e + "</p>"});
