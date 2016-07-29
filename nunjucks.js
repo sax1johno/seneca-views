@@ -45,6 +45,7 @@ module.exports = function(options) {
                     // var list = view.list$({plugin: pluginName, name: templateName});
                     if (list.length <= 0) {
                         throw "Unable to find view with plugin " + pluginName + " and name " + templateName;
+                    }
                     // var renderedTemplate = sync.await(nunjucks.renderString(list[0], {}, sync.defer()));
                     // return renderedTemplate;
                     return list[0];
