@@ -45,8 +45,9 @@ module.exports = function(options) {
                     // var list = view.list$({plugin: pluginName, name: templateName});
                     if (list.length <= 0) {
                         throw "Unable to find view with plugin " + pluginName + " and name " + templateName;
-                    var renderedTemplate = sync.await(nunjucks.renderString(list[0], {}, sync.defer()));
-                    return renderedTemplate;
+                    // var renderedTemplate = sync.await(nunjucks.renderString(list[0], {}, sync.defer()));
+                    // return renderedTemplate;
+                    return list[0];
                 }
                 nunjucks.renderString(args.view.template, locals, function(err, html) {
                     console.log("Html = ", sutil.inspect(html));
