@@ -1,4 +1,5 @@
 var jade = require('./jade'),
+    nunjucks = require('./nunjucks'),
     underscore = require('underscore'),
     render = require('consolidate'),
     path = require('path'),
@@ -116,6 +117,7 @@ module.exports = function(options) {
     });
 
     seneca.use(jade);
+    seneca.use(nunjucks);
 
     // return the name for this module.
     return {
