@@ -41,6 +41,7 @@ module.exports = function(options) {
             try {
                 options.seneca = seneca;
                 locals.template = function(pluginName, templateName) {
+                    var view = seneca.make('sys','views');
                     var list = sync.await(view.list$({name: templateName, plugin: pluginName}, sync.defer()));
                     // var list = view.list$({plugin: pluginName, name: templateName});
                     if (list.length <= 0) {
