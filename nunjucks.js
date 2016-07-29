@@ -49,7 +49,8 @@ module.exports = function(options) {
                     }
                     // var renderedTemplate = sync.await(nunjucks.renderString(list[0], {}, sync.defer()));
                     // return renderedTemplate;
-                    return list[0].template;
+                    var tmpl = new nunjucks.Template(list[0].template);
+                    return tmpl;
                 }
                 nunjucks.renderString(args.view.template, locals, function(err, html) {
                     console.log("Html = ", sutil.inspect(html));
