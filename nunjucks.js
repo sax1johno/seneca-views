@@ -40,6 +40,14 @@ module.exports = function(options) {
         sync.fiber(function() {
             try {
                 options.seneca = seneca;
+                locals.template = function(pluginName, templateName) {
+                    var list = sync.await(view.list$({name: templateName, plugin: pluginName}, sync.defer()));
+                    // var list = view.list$({plugin: pluginName, name: templateName});
+                    if (list.length <= 0) {
+                        throw "Unable to find view with plugin " + pluginName + " and name " + templateName;
+                    var renderedTemplate = sync.await(nunjucks.renderString(list[0], {}, sync.defer()));
+                    return renderedTemplate;
+                }
                 nunjucks.renderString(args.view.template, locals, function(err, html) {
                     console.log("Html = ", sutil.inspect(html));
                     done(err, {html: html});
