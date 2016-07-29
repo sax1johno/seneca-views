@@ -49,7 +49,7 @@ module.exports = function(options) {
                     }
                     // var renderedTemplate = sync.await(nunjucks.renderString(list[0], {}, sync.defer()));
                     // return renderedTemplate;
-                    return list[0];
+                    return list[0].template;
                 }
                 nunjucks.renderString(args.view.template, locals, function(err, html) {
                     console.log("Html = ", sutil.inspect(html));
