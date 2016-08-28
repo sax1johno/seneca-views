@@ -99,6 +99,17 @@ module.exports = function(options) {
         });
     });
     
+
+    // List all of the views available in the system.
+    seneca.add({
+        role: pluginName,
+        cmd: "list"
+    }, function(args, done) {
+        var view = seneca.make('sys','views');
+        // Get the template for this command.
+        view.list$(args, done);
+    });
+
     // If you want to add any more routes, or override some route mapping
     // from the routes file, this is the place to do it.
     // routes.<command> = {GET: true};
