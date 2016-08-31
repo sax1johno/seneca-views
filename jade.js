@@ -36,8 +36,11 @@ module.exports = function(options) {
         var locals = args.locals || {};
         // Add markdown support.  $ at the end is meant to prevent accidental namespace overloading by other
         // locals.
-        locals.markdown$ = markdown;
-        locals.md$ = markdown;
+        var markdownWrapper = function(string) {
+            return marked(string || '');
+        }
+        locals.markdown$ = markdownWrapper;
+        locals.md$ = markdownWrapper;
         sync.fiber(function() {
             try {
                 options.parser = jadeParserPatch;
