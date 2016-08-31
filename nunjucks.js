@@ -36,7 +36,7 @@ module.exports = function(options) {
         // Add markdown support.  $ at the end is meant to prevent accidental namespace overloading by other
         // locals.
         var markdownWrapper = function(string) {
-            return marked(string || '');
+            return markdown(string || '');
         }
         locals.markdown$ = markdownWrapper;
         locals.md$ = markdownWrapper;
