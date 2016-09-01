@@ -107,8 +107,7 @@ module.exports = function(options) {
     }, function(args, done) {
         var view = seneca.make('sys','views');
         // Get the template for this command.
-        args = args || {};
-        view.list$(args, done);
+        view.list$({}, function(err, list) {
     });
 
     // If you want to add any more routes, or override some route mapping
