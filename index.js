@@ -103,10 +103,11 @@ module.exports = function(options) {
     // List all of the views available in the system.
     seneca.add({
         role: pluginName,
-        cmd: "list"
+        cmd: "query"
     }, function(args, done) {
         var view = seneca.make('sys','views');
         // Get the template for this command.
+        args = args || {};
         view.list$(args, done);
     });
 
