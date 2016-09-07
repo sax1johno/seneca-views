@@ -22,6 +22,13 @@ module.exports = function(options) {
     options = seneca.util.deepextend({
     },options)
 
+    var renderEnv;
+
+    if (options && options.nunjucks) {
+        renderEnv = nunjucks.configure('/path/to/templates', options.nunjucks);
+    } else {
+        renderEnv = nunjucks;
+    }
     /**
      * Render the specified view with the specified render engine.
      **/
@@ -55,7 +62,7 @@ module.exports = function(options) {
                     var tmpl = new nunjucks.Template(list[0].template);
                     return tmpl;
                 }
-                nunjucks.renderString(args.view.template, locals, function(err, html) {
+                renderEnv.renderString(args.view.template, locals, function(err, html) {
                     console.log("Html = ", sutil.inspect(html));
                     done(err, {html: html});
                 });
