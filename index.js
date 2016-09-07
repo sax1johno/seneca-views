@@ -18,6 +18,7 @@ module.exports = function(options) {
     options = seneca.util.deepextend({
     },options)
 
+    console.log("options in seneca-views are ", options);
     /**
      * Add a new template to the view engine.
      * Creates a temporary file for each template registered.
