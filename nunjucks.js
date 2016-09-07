@@ -24,6 +24,8 @@ module.exports = function(options) {
 
     var renderEnv;
 
+    console.log("options in nunjucks view are ", options);
+
     if (options && options.nunjucks) {
         renderEnv = nunjucks.configure('/path/to/templates', options.nunjucks);
     } else {

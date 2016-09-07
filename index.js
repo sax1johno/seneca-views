@@ -131,8 +131,8 @@ module.exports = function(options) {
         }
     });
 
-    seneca.use(jade);
-    seneca.use(nunjucks);
+    seneca.use(jade, options);
+    seneca.use(nunjucks, options);
 
     // return the name for this module.
     return {
