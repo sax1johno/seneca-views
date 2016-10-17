@@ -14,6 +14,7 @@ module.exports = function(options) {
     var pluginName = "views";
     
     var seneca = this;
+    seneca.use('seneca-entity');
     
     options = seneca.util.deepextend({
     },options)
@@ -112,23 +113,6 @@ module.exports = function(options) {
             console.log("Results of query are ", results);
             done(err, results);
         });
-    });
-
-    // If you want to add any more routes, or override some route mapping
-    // from the routes file, this is the place to do it.
-    // routes.<command> = {GET: true};
-    seneca.act('role:web',{use:{
-          // define some routes that start with /my-api
-          prefix: "/api/v1/" + pluginName,
-          // use action patterns where the role is web, the type is 'api'
-          // and any command is given.
-          pin: {role:pluginName,cmd:"*"},
-          // Map each command to some HTTP method, and use the
-          // query parameters as values for the action
-          map: {
-              render: {GET: true}
-          }
-        }
     });
 
     seneca.use(jade, options);
