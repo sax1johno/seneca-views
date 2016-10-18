@@ -61,7 +61,7 @@ module.exports = function(options) {
                     }
                     // var renderedTemplate = sync.await(nunjucks.renderString(list[0], {}, sync.defer()));
                     // return renderedTemplate;
-                    var tmpl = new nunjucks.Template(list[0].template);
+                    var tmpl = new renderEnv.Template(list[0].template);
                     return tmpl;
                 }
                 renderEnv.renderString(args.view.template, locals, function(err, html) {
