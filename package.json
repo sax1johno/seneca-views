@@ -1,6 +1,6 @@
 {
   "name": "seneca-views",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "A views engine for senecajs that renders views as a microservice.  Allows views to be referenced by plugin and name rather than file location making it compatible with multi-process, multi-machine microservices.",
   "main": "index.js",
   "directories": {
